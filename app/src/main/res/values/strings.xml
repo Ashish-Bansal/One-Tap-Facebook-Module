@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">One Tap Facebook Module</string>
+    <string name="app_description">Allows downloading facebook videos. It requires One Tap Video Download to work.</string>
+</resources>
