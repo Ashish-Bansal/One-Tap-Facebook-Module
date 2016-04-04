@@ -6,8 +6,6 @@ import android.content.pm.PackageManager;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.text.DateFormat;
-import java.util.Calendar;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -25,7 +23,6 @@ public class FacebookLiteHook implements IXposedHookLoadPackage {
     private static final String IPC_SERVICE_CLASS_NAME = ONE_TAP_PACKAGE_NAME + ".IpcService";
     public static final String EXTRA_URL = ONE_TAP_PACKAGE_NAME + ".extra.url";
     public static final String EXTRA_PACKAGE_NAME = ONE_TAP_PACKAGE_NAME + ".extra.package_name";
-    public static final String EXTRA_METADATA = ONE_TAP_PACKAGE_NAME + ".extra.metadata";
 
     public Context getContext() {
         Class activityThreadClass = XposedHelpers.findClass("android.app.ActivityThread", null);
@@ -57,10 +54,6 @@ public class FacebookLiteHook implements IXposedHookLoadPackage {
                     intent.setClassName(ONE_TAP_PACKAGE_NAME, IPC_SERVICE_CLASS_NAME);
                     intent.putExtra(EXTRA_URL, url);
                     intent.putExtra(EXTRA_PACKAGE_NAME, getContext().getPackageName());
-
-                    Calendar cal = Calendar.getInstance();
-                    intent.putExtra(EXTRA_METADATA, DateFormat.getDateTimeInstance().format(cal.getTime()));
-
                     context.startService(intent);
                 } catch (Exception e) {
                     StringWriter sw = new StringWriter();

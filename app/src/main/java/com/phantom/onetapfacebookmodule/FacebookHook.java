@@ -6,8 +6,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Set;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -66,10 +64,6 @@ public class FacebookHook implements IXposedHookLoadPackage {
                     intent.setClassName(ONE_TAP_PACKAGE_NAME, IPC_SERVICE_CLASS_NAME);
                     intent.putExtra(EXTRA_URL, stringUri);
                     intent.putExtra(EXTRA_PACKAGE_NAME, getContext().getPackageName());
-
-                    Calendar cal = Calendar.getInstance();
-                    intent.putExtra(EXTRA_METADATA, DateFormat.getDateTimeInstance().format(cal.getTime()));
-
                     context.startService(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
