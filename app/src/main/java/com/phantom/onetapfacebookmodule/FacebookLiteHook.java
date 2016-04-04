@@ -53,7 +53,7 @@ public class FacebookLiteHook implements IXposedHookLoadPackage {
                     Intent intent = new Intent(ACTION_SAVE_URI);
                     intent.setClassName(ONE_TAP_PACKAGE_NAME, IPC_SERVICE_CLASS_NAME);
                     intent.putExtra(EXTRA_URL, url);
-                    intent.putExtra(EXTRA_PACKAGE_NAME, getContext().getPackageName());
+                    intent.putExtra(EXTRA_PACKAGE_NAME, lpparam.packageName);
                     context.startService(intent);
                 } catch (Exception e) {
                     StringWriter sw = new StringWriter();
